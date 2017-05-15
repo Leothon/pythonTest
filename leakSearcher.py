@@ -1,4 +1,5 @@
 import socket
+#-*- coding: utf-8 -*-
 import os
 import sys
 def retBannner(ip,port):
@@ -17,7 +18,7 @@ def checkVulns(banner,filename):
     f=open(filename,"r")
     for line in f.readlines():
         if line.strip('\n') in banner:#strip方法用来去掉换行符
-            print('[+] Server is vulnerable:'+ banner.strip('\n'))
+            print '[+] Server is vulnerable:'+ banner.strip('\n')
 ''''
     if 'FreeFloat Ftp Server (Version 1.00)' in banner:
         print('[+] FreeFloat FTP Server is vulnerable.')
@@ -36,10 +37,10 @@ def main():
     if len(sys.argv)==2:
         filename=sys.argv[1]
         if not os.path.isfile(filename):
-            print('[-]'+filename+'does not exist.')
+            print '[-]'+filename+'does not exist.'
             exit(0)
         if not os.access(filename,os.R_OK):
-            print('[-]'+filename+'access denied')
+            print '[-]'+filename+'access denied'
             exit(0)
     else:
         print('[-] Usage:'+str(sys.argv[0])+'<vuln filename>')
@@ -50,8 +51,8 @@ def main():
             for port in portList:
                 banner = retBannner(ip, port)
                 if banner:
-                    print('[+]' + ip + ':' + banner)
-                    checkVulns(banner, filename)
+                    print '[+]' + ip + ':' + banner
+                    checkVulns(banner,filename)
 
 
 
